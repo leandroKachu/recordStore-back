@@ -15,10 +15,11 @@ class SignupController < ApplicationController
                          )
 
       render json: { csrf: tokens[:csrf]}
+    else
+      render json: {errors: user.errors.full_messages.join(' ')}, status: :unprocessable_entity
     end
 
-  else
-    render json: {errors: user.errors.full_messages.join(' ')}, status: :unprocessable_entity
+  
   end
 
 
